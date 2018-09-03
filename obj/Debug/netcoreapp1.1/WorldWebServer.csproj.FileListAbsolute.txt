@@ -1,0 +1,41 @@
+C:\Source\edX\Course 001\Labs\015\Final Project\WorldWebServer\bin\Debug\netcoreapp1.1\WorldWebServer.deps.json
+C:\Source\edX\Course 001\Labs\015\Final Project\WorldWebServer\bin\Debug\netcoreapp1.1\WorldWebServer.runtimeconfig.json
+C:\Source\edX\Course 001\Labs\015\Final Project\WorldWebServer\bin\Debug\netcoreapp1.1\WorldWebServer.runtimeconfig.dev.json
+C:\Source\edX\Course 001\Labs\015\Final Project\WorldWebServer\bin\Debug\netcoreapp1.1\WorldWebServer.dll
+C:\Source\edX\Course 001\Labs\015\Final Project\WorldWebServer\bin\Debug\netcoreapp1.1\WorldWebServer.pdb
+C:\Source\edX\Course 001\Labs\015\Final Project\WorldWebServer\obj\Debug\netcoreapp1.1\WorldWebServer.AssemblyInfo.cs
+C:\Source\edX\Course 001\Labs\015\Final Project\WorldWebServer\obj\Debug\netcoreapp1.1\WorldWebServer.dll
+C:\Source\edX\Course 001\Labs\015\Final Project\WorldWebServer\obj\Debug\netcoreapp1.1\WorldWebServer.pdb
+D:\WebAPI\Module_4_Lab_Files\Final Project\Finished\WorldWebServer\bin\Debug\netcoreapp1.1\WorldWebServer.deps.json
+D:\WebAPI\Module_4_Lab_Files\Final Project\Finished\WorldWebServer\bin\Debug\netcoreapp1.1\WorldWebServer.runtimeconfig.json
+D:\WebAPI\Module_4_Lab_Files\Final Project\Finished\WorldWebServer\bin\Debug\netcoreapp1.1\WorldWebServer.runtimeconfig.dev.json
+D:\WebAPI\Module_4_Lab_Files\Final Project\Finished\WorldWebServer\bin\Debug\netcoreapp1.1\WorldWebServer.dll
+D:\WebAPI\Module_4_Lab_Files\Final Project\Finished\WorldWebServer\bin\Debug\netcoreapp1.1\WorldWebServer.pdb
+D:\WebAPI\Module_4_Lab_Files\Final Project\Finished\WorldWebServer\obj\Debug\netcoreapp1.1\WorldWebServer.csprojAssemblyReference.cache
+D:\WebAPI\Module_4_Lab_Files\Final Project\Finished\WorldWebServer\obj\Debug\netcoreapp1.1\WorldWebServer.csproj.CoreCompileInputs.cache
+D:\WebAPI\Module_4_Lab_Files\Final Project\Finished\WorldWebServer\obj\Debug\netcoreapp1.1\WorldWebServer.AssemblyInfoInputs.cache
+D:\WebAPI\Module_4_Lab_Files\Final Project\Finished\WorldWebServer\obj\Debug\netcoreapp1.1\WorldWebServer.AssemblyInfo.cs
+D:\WebAPI\Module_4_Lab_Files\Final Project\Finished\WorldWebServer\obj\Debug\netcoreapp1.1\WorldWebServer.dll
+D:\WebAPI\Module_4_Lab_Files\Final Project\Finished\WorldWebServer\obj\Debug\netcoreapp1.1\WorldWebServer.pdb
+C:\Users\admin\Desktop\Workspace\ASP\WorldWebServer\bin\Debug\netcoreapp1.1\WorldWebServer.deps.json
+C:\Users\admin\Desktop\Workspace\ASP\WorldWebServer\bin\Debug\netcoreapp1.1\WorldWebServer.runtimeconfig.json
+C:\Users\admin\Desktop\Workspace\ASP\WorldWebServer\bin\Debug\netcoreapp1.1\WorldWebServer.runtimeconfig.dev.json
+C:\Users\admin\Desktop\Workspace\ASP\WorldWebServer\bin\Debug\netcoreapp1.1\WorldWebServer.dll
+C:\Users\admin\Desktop\Workspace\ASP\WorldWebServer\bin\Debug\netcoreapp1.1\WorldWebServer.pdb
+C:\Users\admin\Desktop\Workspace\ASP\WorldWebServer\obj\Debug\netcoreapp1.1\WorldWebServer.csprojAssemblyReference.cache
+C:\Users\admin\Desktop\Workspace\ASP\WorldWebServer\obj\Debug\netcoreapp1.1\WorldWebServer.csproj.CoreCompileInputs.cache
+C:\Users\admin\Desktop\Workspace\ASP\WorldWebServer\obj\Debug\netcoreapp1.1\WorldWebServer.AssemblyInfoInputs.cache
+C:\Users\admin\Desktop\Workspace\ASP\WorldWebServer\obj\Debug\netcoreapp1.1\WorldWebServer.AssemblyInfo.cs
+C:\Users\admin\Desktop\Workspace\ASP\WorldWebServer\obj\Debug\netcoreapp1.1\WorldWebServer.dll
+C:\Users\admin\Desktop\Workspace\ASP\WorldWebServer\obj\Debug\netcoreapp1.1\WorldWebServer.pdb
+C:\Users\admin\Desktop\Workspace\ASP\Logistics\Logistics_WebAPI\bin\Debug\netcoreapp1.1\WorldWebServer.deps.json
+C:\Users\admin\Desktop\Workspace\ASP\Logistics\Logistics_WebAPI\bin\Debug\netcoreapp1.1\WorldWebServer.runtimeconfig.json
+C:\Users\admin\Desktop\Workspace\ASP\Logistics\Logistics_WebAPI\bin\Debug\netcoreapp1.1\WorldWebServer.runtimeconfig.dev.json
+C:\Users\admin\Desktop\Workspace\ASP\Logistics\Logistics_WebAPI\bin\Debug\netcoreapp1.1\WorldWebServer.dll
+C:\Users\admin\Desktop\Workspace\ASP\Logistics\Logistics_WebAPI\bin\Debug\netcoreapp1.1\WorldWebServer.pdb
+C:\Users\admin\Desktop\Workspace\ASP\Logistics\Logistics_WebAPI\obj\Debug\netcoreapp1.1\WorldWebServer.csprojAssemblyReference.cache
+C:\Users\admin\Desktop\Workspace\ASP\Logistics\Logistics_WebAPI\obj\Debug\netcoreapp1.1\WorldWebServer.csproj.CoreCompileInputs.cache
+C:\Users\admin\Desktop\Workspace\ASP\Logistics\Logistics_WebAPI\obj\Debug\netcoreapp1.1\WorldWebServer.AssemblyInfoInputs.cache
+C:\Users\admin\Desktop\Workspace\ASP\Logistics\Logistics_WebAPI\obj\Debug\netcoreapp1.1\WorldWebServer.AssemblyInfo.cs
+C:\Users\admin\Desktop\Workspace\ASP\Logistics\Logistics_WebAPI\obj\Debug\netcoreapp1.1\WorldWebServer.dll
+C:\Users\admin\Desktop\Workspace\ASP\Logistics\Logistics_WebAPI\obj\Debug\netcoreapp1.1\WorldWebServer.pdb

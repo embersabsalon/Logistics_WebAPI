@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Logistics</title>
+  <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+  <script>
+    $(function () {
+      var parcelInfo = $('#parcelInfo');
+      var parcelTDCList= $('#parcelTDCInfo');
+      var parcelsList = $('#parcelsList');
+      
+      //This code block fills the selection box based on the parcel ID
+      function fillsingularparcel(parcels){
+        parcelInfo.empty();
+          var parTrackingID = $('<option></option>').val(parcels.trackingID).text("Tracking ID: "+parcels.trackingID);
+          var parSenderName = $('<option></option>').val(parcels.trackingID).text("Sender Name: "+parcels.senderName);
+          var parSenderNum = $('<option></option>').val(parcels.trackingID).text("Sender Phone Number: "+parcels.senderNum);
+          var parSenderAddress = $('<option></option>').val(parcels.trackingID).text("Sender Address: "+parcels.senderAddress);
+          var parReceiverName = $('<option></option>').val(parcels.trackingID).text("Receiver Name: "+parcels.receiverName);
+          var parReceiverNum  = $('<option></option>').val(parcels.trackingID).text("Receiver Phone Number: "+parcels.receiverNum);
+          var parReceiverAddress = $('<option></option>').val(parcels.trackingID).text("Receiver Address: "+parcels.receiverAddress);
+          var parOriginDistCenterID = $('<option></option>').val(parcels.trackingID).text("Origin Distribution Center ID: "+parcels.originDistCenterID);
+          var parNextDistCenterID = $('<option></option>').val(parcels.trackingID).text("Inbound Distribution Center ID: "+parcels.nextDistCenterID);
+          var parFinalDistCenterID = $('<option></option>').val(parcels.trackingID).text("Final Distribution Center ID: "+parcels.finalDistCenterID);
+          var parStatus = $('<option></option>').val(parcels.trackingID).text("Status: "+parcels.status);
+          parcelInfo.append(parTrackingID);
+          parcelInfo.append(parSenderName);
+          parcelInfo.append(parSenderNum);
+          parcelInfo.append(parSenderAddress);
+          parcelInfo.append(parReceiverName);
+          parcelInfo.append(parReceiverNum);
+          parcelInfo.append(parReceiverAddress);
+          parcelInfo.append(parOriginDistCenterID);
+          parcelInfo.append(parNextDistCenterID);
+          parcelInfo.append(parFinalDistCenterID);
+          parcelInfo.append(parStatus);
+      }
+      
+      //This code block fills the selection box based on the transporting distribution Center ID
+      function filltdcparcellist(parcels){
+        parcelTDCList.empty();
+        for (var i in parcels) {
+          var option = $('<option></option>').val(parcels[i].trackingID).text("Parcel Tracking ID: "+parcels[i].trackingID);
+          parcelTDCList.append(option);
+        }
+      }
+
+      function fillparcelsList(parcels) {
+        parcelsList.empty();
+        for (var i in parcels) {
+          var option = $('<option></option>').val(parcels[i].trackingID).text("Parcel Tracking ID: "+parcels[i].trackingID 
+          +"| Inbound to Distribution Center #" +parcels[i].nextDistCenterID);
+          parcelsList.append(option);
+        }
+      }
+      
+      //This code block is the function runs when seach parcel by ID is pressed
+      $('#parcelsByIDBtn').click(function () {
+        var parcelID = $('#parcelIDtxt').val();
+        $.get('api/parcels/' + parcelID).done(function (parcels) {
+          fillsingularparcel(parcels);
+        });
+      });
+      
+      $('#parcelsByTDCIDBtn').click(function () {
+        $.get('api/parcels/').done(function (parcels) {
+          filltdcparcellist(parcels);
+        });
+      });
+      $('#allparcelsBtn').click(function () {
+        $.get('api/parcels').done(function (parcels) {
+          fillparcelsList(parcels);
+        });
+      });
+
+      
+      //This code block is the function that runs when the distribution center search is pressed
+      $('#parcelsByTDCIDBtn').click(function () {
+        var ndc = $('#TDCIDtxt').val();
+        $.get('api/parcels/ndc/' + ndc).done(function (parcels) {
+          filltdcparcellist(parcels);
+        });
+      });
+      
+      //This code block is what clears the search parcel 
+      $('#clearsearchesBtn').click(function () {
+        parcelInfo.empty();
+        parcelTDCList.empty();
+      });
+      
+      //This code block clears all search parcel selection box
+      $('#clearBtn').click(function () {
+        parcelsList.empty();
+      });
+      
+      //This code block is for both the clear button on update and create sections
+      $('#clearCParcel').click(function () {
+        $('#csenderName').val(""),
+        $('#csenderPhoneNo').val(""),
+        $('#csenderAddress').val(""),
+        $('#creceiverName').val(""),
+        $('#creceiverPhoneNo').val(""),
+        $('#creceiverAddress').val(""),
+        $('#coriginDCID').val(""),
+        $('#cinboundDCID').val(""),
+        $('#cdestinationDCID').val(""),
+        $('#cStatus').val("")
+      });
+      $('#clearUParcel').click(function () {
+        $('#utrackingID').val(""),
+        $('#usenderName').val(""),
+        $('#usenderPhoneNo').val(""),
+        $('#usenderAddress').val(""),
+        $('#ureceiverName').val(""),
+        $('#ureceiverPhoneNo').val(""),
+        $('#ureceiverAddress').val(""),
+        $('#uoriginDCID').val(""),
+        $('#uinboundDCID').val(""),
+        $('#udestinationDCID').val(""),
+        $('#uStatus').val("")
+      });
+      
+      //This code block runs when search by distribution id is pressed
+      $('#parcelsByTDCIDBtn').click(function () {
+        $.get('api/parcels/').done(function (parcels) {
+          filltdcparcellist(parcels);
+        });
+      });
+
+      //This code block runs when display all parcels is pressed
+      $('#allparcelsBtn').click(function () {
+        $.get('api/parcels').done(function (parcels) {
+          fillparcelsList(parcels);
+        });
+      });
+
+      //This code block runs when delete parcel is pressed
+      $('#delParcelBtn').click(function () {
+        var parcelID = parseInt($('#delParcelID').val());
+        console.log(parcelID);
+        if (parcelID) {
+          $.ajax({ url: 'api/parcels/' + parcelID, type: 'delete' }).done(function () {
+            alert('Seleted parcel is deleted.');
+          });
+        }
+      });
+      
+      //This code block happens when the user presses on any selection in the search parcel and updates the update parcel section
+      parcelsList.change(function () {
+        var parcelTID = parcelsList.val();
+        $.get('api/parcels/' + parcelTID).done(function (parcel) {
+          $('#utrackingID').val(parcel.trackingID);
+          $('#delParcelID').val(parcel.trackingID);
+          $('#usenderName').val(parcel.senderName);
+          $('#usenderPhoneNo').val(parcel.senderNum);
+          $('#usenderAddress').val(parcel.senderAddress);
+          $('#ureceiverName').val(parcel.receiverName);
+          $('#ureceiverPhoneNo').val(parcel.receiverNum);
+          $('#ureceiverAddress').val(parcel.receiverAddress);
+          $('#uoriginDCID').val(parcel.originDistCenterID);
+          $('#uinboundDCID').val(parcel.nextDistCenterID);
+          $('#udestinationDCID').val(parcel.finalDistCenterID);
+          $('#uStatus').val(parcel.status);
+        })
+      });
+      parcelInfo.change(function () {
+        var parcelTID = parcelInfo.val();
+        $.get('api/parcels/' + parcelTID).done(function (parcel) {
+          $('#utrackingID').val(parcel.trackingID);
+          $('#delParcelID').val(parcel.trackingID);
+          $('#usenderName').val(parcel.senderName);
+          $('#usenderPhoneNo').val(parcel.senderNum);
+          $('#usenderAddress').val(parcel.senderAddress);
+          $('#ureceiverName').val(parcel.receiverName);
+          $('#ureceiverPhoneNo').val(parcel.receiverNum);
+          $('#ureceiverAddress').val(parcel.receiverAddress);
+          $('#uoriginDCID').val(parcel.originDistCenterID);
+          $('#uinboundDCID').val(parcel.nextDistCenterID);
+          $('#udestinationDCID').val(parcel.finalDistCenterID);
+          $('#uStatus').val(parcel.status);
+        })
+      });
+      parcelTDCList.change(function () {
+        var parcelTID = parcelTDCList.val();
+        $.get('api/parcels/' + parcelTID).done(function (parcel) {
+          $('#utrackingID').val(parcel.trackingID);
+          $('#delParcelID').val(parcel.trackingID);
+          $('#usenderName').val(parcel.senderName);
+          $('#usenderPhoneNo').val(parcel.senderNum);
+          $('#usenderAddress').val(parcel.senderAddress);
+          $('#ureceiverName').val(parcel.receiverName);
+          $('#ureceiverPhoneNo').val(parcel.receiverNum);
+          $('#ureceiverAddress').val(parcel.receiverAddress);
+          $('#uoriginDCID').val(parcel.originDistCenterID);
+          $('#uinboundDCID').val(parcel.nextDistCenterID);
+          $('#udestinationDCID').val(parcel.finalDistCenterID);
+          $('#uStatus').val(parcel.status);
+        })
+      });
+    
+      //This function runs when create parcel is pressed
+      $('#cpBtn').click(function () {
+        var parcel = {
+          senderName: $('#csenderName').val(),
+          senderNum: parseInt($('#csenderPhoneNo').val()),
+          senderAddress: $('#csenderAddress').val(),
+          receiverName: $('#creceiverName').val(),
+          receiverNum: parseInt($('#creceiverPhoneNo').val()),
+          receiverAddress: $('#creceiverAddress').val(),
+          originDistCenterID: parseInt($('#coriginDCID').val()),
+          nextDistCenterID: parseInt($('#cinboundDCID').val()),
+          finalDistCenterID: parseInt($('#cdestinationDCID').val()),
+          status: $('#cStatus').val()
+        };
+        
+        var json = JSON.stringify(parcel);
+
+        $.ajax({
+          type: 'POST',
+          url: 'api/parcels',
+          dataType: 'json',
+          contentType: 'application/json; charset=utf-8',
+          data: json
+        }).done(function (parcel) {
+          alert('Parcel #' + parcel.trackingID + ' is created, please reload.');
+        });
+      });
+      
+      //This function runs when delete parcel is pressed
+      $('#ucBtn').click(function () {
+        var parcel = {
+          trackingID: parseInt($('#utrackingID').val()),
+          senderName: $('#usenderName').val(),
+          senderNum: parseInt($('#usenderPhoneNo').val()),
+          senderAddress: $('#usenderAddress').val(),
+          receiverName: $('#ureceiverName').val(),
+          receiverNum: parseInt($('#ureceiverPhoneNo').val()),
+          receiverAddress: $('#ureceiverAddress').val(),
+          originDistCenterID: parseInt($('#uoriginDCID').val()),
+          nextDistCenterID: parseInt($('#uinboundDCID').val()),
+          finalDistCenterID: parseInt($('#udestinationDCID').val()),
+          status: $('#uStatus').val()
+        };
+        
+        console.log(parcel);  
+        var json = JSON.stringify(parcel);
+
+        $.ajax({
+          type: 'PUT',
+          url: 'api/parcels/'+parcel.trackingID,
+          contentType: 'application/json; charset=utf-8',
+          data: json
+        }).done(function () {
+          alert('Parcel #' + parcel.trackingID + ' is updated, please reload.');
+        });
+      });
+    })
+  </script>
+  <style>
+    .btn {
+      width: 120px;
+    }
+    
+    .txt {
+      width: 120px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Parcel Tracker</h1>
+  <hr/>
+
+  <h2>Search Parcels</h2>
+  Search by Parcel ID: <input class="txt" id="parcelIDtxt" />
+  <input type="button" id="parcelsByIDBtn" class="btn" value="Search" />
+  &ensp;&ensp;&ensp;&ensp;
+  &ensp;&ensp;&ensp;&ensp;
+  &ensp;&ensp;&ensp;&ensp;
+  &ensp; Search by En route Distribution Center ID: <input class="txt" id="TDCIDtxt" />
+  <input type="button" id="parcelsByTDCIDBtn" class="btn" value="Search" />
+  <br/>
+  <select id="parcelInfo" size="10" style="border:black 1px solid; width:500px; margin:1px"></select>
+  <select id="parcelTDCInfo" size="10" style="border:black 1px solid; width:500px; margin:1px"></select>
+  <input type="button" id="clearsearchesBtn" class="btn" value="Clear Searches" />
+  <hr/>
+
+  <h2>Display All Parcels</h2>
+  <select id="parcelsList" size="10" style="border:black 1px solid; width:500px; margin:1px"></select>
+  <input type="button" id="allparcelsBtn" class="btn" value="Display All Parcels" />
+  <input type="button" id="clearBtn" class="btn" value="Clear" />
+  <hr/>
+
+  <h2>Update Parcel</h2>
+  <p>Click on a parcel above to auto fill info</p>
+  Parcel Tracking ID: <input class="txt" id="utrackingID" style="width:400px"/> 
+  <br>Sender Name: <input class="txt" id="usenderName" style="width:400px"/> 
+  <br>Sender Phone Number: <input class="txt" id="usenderPhoneNo" style="width:400px"/> 
+  <br>Sender Address: <input class="txt" id="usenderAddress" style="width:400px"/> 
+  <br>Receiver Name: <input class="txt" id="ureceiverName" style="width:400px"/> 
+  <br>Receiver Phone Number: <input class="txt" id="ureceiverPhoneNo" style="width:400px"/> 
+  <br>Receiver Address: <input class="txt" id="ureceiverAddress" style="width:400px"/>
+  <br>Origin Distribution Center ID: <input class="txt" id="uoriginDCID" style="width:400px"/> 
+  <br>Inbound Distribution Center ID: <input class="txt" id="uinboundDCID" style="width:400px"/> 
+  <br>Destination Distribution Center ID: <input class="txt" id="udestinationDCID" style="width:400px"/> 
+  <br>Status: <input class="txt" id="uStatus" style="width:400px"/> 
+  <br><input class="btn" type="button" id="ucBtn" value="Update" /><input class="btn" type="button" id="clearUParcel" value="Clear" />
+  <hr/>
+
+  <h2>Create Parcel</h2>
+  Sender Name: <input class="txt" id="csenderName" style="width:400px"/> 
+  <br>Sender Phone Number: <input class="txt" id="csenderPhoneNo" style="width:400px"/> 
+  <br>Sender Address: <input class="txt" id="csenderAddress" style="width:400px" /> 
+  <br>Receiver Name: <input class="txt" id="creceiverName" style="width:400px"/> 
+  <br>Receiver Phone Number: <input class="txt" id="creceiverPhoneNo" style="width:400px"/> 
+  <br>Receiver Address: <input class="txt" id="creceiverAddress" style="width:400px"/>
+  <br>Origin Distribution Center ID: <input class="txt" id="coriginDCID" style="width:400px"/> 
+  <br>Inbound Distribution Center ID: <input class="txt" id="cinboundDCID" style="width:400px"/> 
+  <br>Destination Distribution Center ID: <input class="txt" id="cdestinationDCID" style="width:400px"/> 
+  <br>Status: <input class="txt" id="cStatus" style="width:400px"/> 
+  <br><input class="btn" type="button" id="cpBtn" value="Create" /><input class="btn" type="button" id="clearCParcel" value="Clear" />
+  <hr/>
+
+  <h2>Delete Parcel</h2>
+  Enter Parcel ID: <input class="txt" id="delParcelID" /><input type="button" id="delParcelBtn" value="Delete Seleted Parcel" />
+</body>
+
+</html>
